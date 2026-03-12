@@ -1,0 +1,11 @@
+{
+  "fullName": "Your Name",
+  "email": "you@example.com",
+  "phone": "555-555-5555",
+  "location": "Your City, ST",
+  "portfolioUrl": "https://portfolio.example.com",
+  "linkedInUrl": "https://www.linkedin.com/in/your-handle",
+  "resumeFile": "resume.pdf",
+  "resumeContextFile": "resumeContext.txt",
+  "desiredSalary": "Negotiable"
+}

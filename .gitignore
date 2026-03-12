@@ -1,0 +1,14 @@
+node_modules/
+.env
+applicant-profile.json
+resumeContext.txt
+resume.pdf
+cover_letter_current.pdf
+daily-stats.json
+application_report.md
+applied_jobs.md
+form-diagnostics.log
+chrome_profile/
+chrome_profiles/
+ui-config.json
+nul

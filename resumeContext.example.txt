@@ -1,0 +1,41 @@
+Name: Your Name
+Email: you@example.com
+Phone: 555-555-5555
+Location: Your City, ST
+Portfolio: https://portfolio.example.com
+LinkedIn: https://www.linkedin.com/in/your-handle
+
+Professional Summary:
+Write 4-6 sentences describing your background, strongest specialties, and the kinds of roles you are targeting.
+
+Core Skills:
+- Skill 1
+- Skill 2
+- Skill 3
+- Skill 4
+
+Recent Experience:
+- Company / Role / Dates
+  What you did, what tools you used, and what results you achieved.
+- Company / Role / Dates
+  What you did, what tools you used, and what results you achieved.
+
+Key Wins:
+- Quantified accomplishment
+- Quantified accomplishment
+- Quantified accomplishment
+
+Application Preferences:
+- Work authorization:
+- Need sponsorship:
+- Preferred salary:
+- Preferred work type:
+- Preferred locations:
+
+Useful Links:
+- Portfolio:
+- LinkedIn:
+- GitHub:
+
+Extra Notes For The AI:
+Add anything you want reused in application answers, like industries you know, management experience, certifications, or a short personal pitch.

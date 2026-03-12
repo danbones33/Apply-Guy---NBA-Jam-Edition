@@ -1,0 +1,18 @@
+{
+  "keywords": [
+    "Frontend Developer",
+    "Product Designer",
+    "Project Manager"
+  ],
+  "activeKeywords": [
+    "Frontend Developer",
+    "Product Designer",
+    "Project Manager"
+  ],
+  "applyMode": "easy_only",
+  "easyApplyDailyLimit": 40,
+  "aiProvider": "openai",
+  "openaiModel": "gpt-4.1",
+  "maxConcurrentAgents": 5,
+  "headless": false
+}
