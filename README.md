@@ -17,7 +17,11 @@
 
 ---
 
-<img src="public/court.png" width="100%" alt="Court" />
+<img src="public/gameplay.png" width="100%" alt="NBA Jam Gameplay" />
+
+---
+
+<img src="public/dashboard.png" width="100%" alt="ApplyGuy Dashboard" />
 
 ---
 
