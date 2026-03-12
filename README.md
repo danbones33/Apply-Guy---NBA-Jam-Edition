@@ -1,161 +1,144 @@
-# ApplyGuy 🏀
+<div align="center">
 
-> *"HE'S ON FIRE!"*
+<img src="public/logo2.png" width="120" alt="ApplyGuy Logo" />
 
-ApplyGuy is a local, AI-powered job application bot with a real-time dashboard, multi-agent parallel workers, and a full NBA Jam arcade easter egg hidden inside.
+# ApplyGuy — NBA Jam Edition
 
-It uses Playwright to drive Chrome, OpenAI (or Gemini) to fill out forms intelligently, and a live Express dashboard so you can watch all the agents work in real time — or just vibe in the arcade.
+### *"HE'S ON FIRE!"*
+
+**A local, AI-powered job application bot with a real-time dashboard,**
+**multi-agent parallel workers, and a full NBA Jam arcade easter egg hidden inside.**
+
+[![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Playwright](https://img.shields.io/badge/Playwright-Latest-2EAD33?style=flat-square)](https://playwright.dev)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4.1-412991?style=flat-square&logo=openai&logoColor=white)](https://openai.com)
+
+</div>
 
 ---
 
-## What it actually does
+<img src="public/court.png" width="100%" alt="Court" />
+
+---
+
+## What It Does
 
 When you click **Start**, the app:
 
-1. Reads your resume, background, and preferences
+1. Reads your resume, background context, and preferences
 2. Spawns multiple independent Chrome workers in parallel
 3. Each worker searches LinkedIn for its assigned keywords
-4. For each job posting, it decides: Easy Apply, external ATS, or skip
-5. If applying, it extracts every form field, sends them to the AI, and fills them out
-6. If LinkedIn rejects a field, it reads the exact validation error and asks the AI to fix just that field — not the whole form
-7. Generates a tailored cover letter PDF on the fly
-8. Logs every outcome in real time back to the dashboard
+4. For each posting: extract fields → send to AI → fill the form → submit
+5. If LinkedIn rejects a field, it reads the exact error and fixes **only that field**
+6. Generates a tailored cover letter PDF on the fly
+7. Logs everything to the live dashboard in real time
 
 Everything runs locally. No cloud. No subscription. No black box.
 
 ---
 
-## The Secret Characters 🕹️
+## The Roster 🏀
 
-Here's the part nobody expects.
+Three agents ship out of the box. These are your starters.
 
-Hidden inside the dashboard is a **full NBA Jam arcade easter egg**. This isn't just a button with a sound effect. It's a proper arcade sequence:
+<div align="center">
 
-**How to find it:** Look for the **Press Start** button in the dashboard. It's there. It's waiting.
+| Agent 1 | Agent 2 | Agent 3 |
+|:---:|:---:|:---:|
+| <img src="public/Agent one .png" width="160" alt="Agent 1" /> | <img src="public/Agent two. .png" width="160" alt="Agent 2" /> | <img src="public/Agent three. .png" width="160" alt="Agent 3" /> |
+| `AGENT 1` | `AGENT 2` | `AGENT 3` |
+| Turbo: <img src="public/Agent one turbo.png" width="100" alt="Agent 1 Turbo" /> | Turbo: <img src="public/Agent 2. Turbo .png" width="100" alt="Agent 2 Turbo" /> | Turbo: <img src="public/Agent 3 Turbo .png" width="100" alt="Agent 3 Turbo" /> |
 
-**What happens:**
-- An **initials entry screen** appears — exactly like the one on arcade cabinets in the 90s
-- You pick your 3 initials using an on-screen grid keyboard
-- Valid initials unlock a **player card** — styled like NBA Jam athlete cards — with a dunk animation
-- The crowd goes wild. Literally. There are audio files for this.
-
-**The sound roster:**
-- `boomshakalaka.mp3` — the classic. You know the one.
-- `cheers.mp3` — crowd reaction
-- `Voicy_Welcome to NBA Jam.mp3` — welcome voice
-- `Voicy_End of Game - NBA Jam.mp3` — when the run ends
-
-**The visuals:**
-- Animated pixel fire strips along the edges (canvas-based, real-time)
-- Arcade-style grid borders and scanline effects
-- Player dunk animations
-- A full **Final Score screen** at the end of a run — styled like the game-over card from NBA Jam — with your application stats and a *"PRESS TIP OFF TO PLAY AGAIN"* prompt
-
-**Why is this here?**
-
-Because *HE'S ON FIRE* is basically the correct description of submitting 40 job applications in one session. The whole thing is a joke about momentum. If you've ever played NBA Jam and got on a streak, you know the feeling. This tool is that, but for LinkedIn.
-
-### Adding your own characters
-
-The player cards are defined in `public/index.html`. Look for the initials-to-player-card mapping. Each entry has:
-
-- A 3-letter initials key (e.g., `"DAN"`)
-- A player name
-- An image path pointing to a `.png` in the `public/` folder
-- An optional animation (`.mp4`) for the dunk sequence
-
-To add your own character:
-1. Drop a `.png` (player card image) and optional `.mp4` (dunk animation) in `public/`
-2. Find the character map in `index.html`
-3. Add your entry with your chosen initials, a name, and the asset filenames
-4. Enter those initials at the arcade screen
-
-You can make yourself a character, make your recruiter a character, make your nemesis from a past job a character. It's your arcade cabinet now.
+</div>
 
 ---
 
-## How the system is built
+## Secret Characters 🕹️
 
-### The server (`server.js`)
+Hidden inside the dashboard is a **full NBA Jam arcade initials system**.
 
-The control tower. It:
+**How to find it:** Look for the `PRESS START` button on the main screen. It's there. It's waiting.
 
-- Serves the dashboard
-- Reads and writes config
-- Splits keywords across workers (6 keywords + 3 agents = 2 keywords per agent)
-- Clones the base Chrome profile for each agent so they don't fight over the same session file
-- Spawns actual separate Node processes — not fake parallel loops
-- Parses structured event lines coming back from those workers
-- Streams everything to the browser via Server-Sent Events
+**How it works:**
+- An arcade-style initials entry screen appears — exactly like an old cabinet
+- Pick your 3 letters from the on-screen grid
+- The right combination unlocks a **secret character** and swaps them into your agent lineup
+- They get their own dunk animation, player card, and sound effects
+- The crowd goes absolutely insane
 
-The dashboard updates you're watching are real events from real worker processes, not front-end animations.
+**The secret roster:**
 
-### The agents (`index.js`)
+<div align="center">
 
-Each agent is a real Node.js child process with its own:
+| | Character | Initials | Slot |
+|:---:|:---:|:---:|:---:|
+| <img src="public/stv.png" width="130" alt="Stephen Hawking" /><br><img src="public/stvturbo.png" width="80" alt="Stephen Hawking Turbo" /> | **Stephen Hawking** | `S` `T` `V` | Agent 1 |
+| <img src="public/clinton2.png" width="130" alt="Bill Clinton" /><br><img src="public/clinton turbo.png" width="80" alt="Bill Clinton Turbo" /> | **Bill Clinton** | `B` `C` `L` | Agent 2 |
+| <img src="public/elon.png" width="130" alt="Elon Musk" /><br><img src="public/elonturbo.png" width="80" alt="Elon Musk Turbo" /> | **Elon Musk** | `E` `L` `N` | Agent 3 |
 
-- Keyword lane
-- Chrome session (cloned from your base profile)
-- State, counters, and logs
+</div>
 
-It loops through job cards, decides what to do, and emits structured `AGENT_EVENT` JSON lines back to the server as it works.
+Each secret character has their own **dunk video**, **reveal sounds**, and **turbo card**.
+Wrong initials? `ACCESS DENIED`. The crowd boos. Try again.
 
-### The AI layer (`ai-provider.js`)
+### Adding Your Own Characters
 
-Abstracts OpenAI and Gemini behind one interface. The AI is called for:
+The character map lives in `public/index.html` — look for `SECRET_CHARS`. Each entry is:
 
-- **Form filling** — extracts field labels, types, options, and asks for structured JSON answers
-- **Cover letter generation** — writes a PDF tailored to the specific job posting
-- **Validation repair** — when LinkedIn rejects a field, passes only the broken fields and their error messages back to the AI for a targeted fix
+```js
+{
+  code: ['X','Y','Z'],          // 3-letter initials to unlock them
+  name: 'Character Name',
+  slot: 1,                       // which agent slot they replace (1, 2, or 3)
+  normal: '/your-card.png',      // player card image
+  turbo: '/your-turbo.png',      // turbo state image
+  dunkVideo: '/your-dunk.mp4',   // celebration video
+  revealSounds: [...],           // optional audio on reveal
+}
+```
 
-OpenAI uses strict JSON schema mode so the output is always parseable. Gemini is a fallback.
-
-### The dashboard (`public/index.html`)
-
-Vanilla HTML/CSS/JS. No framework. Real-time via SSE. Shows:
-
-- Live agent cards with status, branch, and activity
-- Global log stream
-- Run stats (applied, skipped, failed, rate-limited)
-- Config controls (keywords, AI provider, agent count, headless toggle)
-- The arcade easter egg
+Drop your `.png`, `.mp4`, and any `.mp3` files in `public/`, add the entry, and your character is in the game. Make yourself a card. Make your old boss a villain. Make your recruiter a power forward. It's your arcade cabinet now.
 
 ---
 
-## Files you need to create
+## The Sound System 🔊
 
-These four files are required and are **not included in the repo** (they contain your private data):
+The dashboard ships with a full NBA Jam audio roster:
 
-| File | What it is |
+| File | When it plays |
 |---|---|
-| `.env` | Your API keys |
-| `applicant-profile.json` | Your name, email, phone, portfolio URL |
-| `resumeContext.txt` | The AI's briefing document about you |
-| `resume.pdf` | Your actual resume |
-
-Copy the `.example` versions and fill them in. The example files have placeholder values and inline comments explaining each field.
+| `boomshakalaka.mp3` | The classic. You know the one. |
+| `hes-on-fire-nba-jam.mp3` | On a hot application streak |
+| `hes-heating-up_e6Y3nOZ.mp3` | Building momentum |
+| `Voicy_Welcome To NBA Jam.mp3` | On run start |
+| `Voicy_End of Game - NBA Jam .mp3` | When the run ends |
+| `cheers.mp3` / `crowd cheers.mp3` | Successful applications |
+| `no-good.mp3` | Rejections |
+| `too-easy.mp3` | Easy wins |
+| `terrible-shot.mp3` | Bad form fills |
+| `rejected.mp3` | Validation failures |
+| `referee-whistle.mp3` | Rate limiting |
+| `fire.mp3` | Fire effect ambience |
+| `menuloop.mp3` | Dashboard idle loop |
 
 ---
 
-## The most important file: `resumeContext.txt`
+## How the System Works
 
-This is not just your resume in text form. It's the strategic brain fuel for the entire app.
+### The Server (`server.js`)
+The control tower. Serves the dashboard, splits keywords across workers, clones the Chrome profile for each agent, spawns real separate Node processes (not fake parallel loops), and streams live events back to the browser via SSE.
 
-The AI reads this file every time it fills out an application. The better this file is, the better your applications will be. Think of it less as a resume and more as the pre-game prep session where you tell your coach exactly who you are and what you want.
+### The Agents (`index.js`)
+Each agent is an actual child process with its own keyword lane, its own Chrome session, and its own state. It scans job cards, decides what to do, and emits structured `AGENT_EVENT` lines back to the server as it works.
 
-Put in:
+### The AI Layer (`ai-provider.js`)
+Abstracts OpenAI and Gemini behind one interface. Used for:
+- **Form filling** — extracts all field labels/types/options, returns structured JSON answers
+- **Cover letter generation** — writes a PDF tailored to the specific posting
+- **Validation repair** — when LinkedIn rejects a field, sends only the broken fields + error messages back to AI for a targeted fix pass
 
-- Years of experience with specific tools
-- Industries you've worked in
-- Notable projects and achievements
-- Work authorization / sponsorship status (write this explicitly — it comes up constantly)
-- Preferred job types and locations
-- Your portfolio, LinkedIn, and GitHub URLs
-- Pre-written answers to common recurring questions
-
-**Good rule:** if a recruiter might ask it in a form, put it in `resumeContext.txt`.
-
-The difference between a mediocre AI fill and a great one is almost entirely in this file.
+### The Dashboard (`public/index.html`)
+Vanilla HTML/CSS/JS. No framework. Real-time via SSE. Dark arcade theme with pixel fire strips, animated agent cards, live log stream, and the full secret character system.
 
 ---
 
@@ -165,42 +148,37 @@ The difference between a mediocre AI fill and a great one is almost entirely in 
 
 - Node.js 20+
 - npm
-- Google Chrome installed
-- OpenAI API key (Gemini optional)
-- Your own resume PDF
-- Your own background context written in plain text
+- Google Chrome
+- OpenAI API key
+- Your resume as a PDF
+- Your background written in plain text
 
 ### Install
 
 ```bash
 npm install
-```
-
-If Playwright doesn't already have Chromium:
-
-```bash
 npx playwright install chromium
 ```
 
 ### Create your local files
 
-macOS/Linux:
 ```bash
+# macOS/Linux
 cp .env.example .env
 cp applicant-profile.example.json applicant-profile.json
 cp resumeContext.example.txt resumeContext.txt
 cp ui-config.example.json ui-config.json
 ```
 
-Windows (PowerShell):
 ```powershell
+# Windows (PowerShell)
 Copy-Item .env.example .env
 Copy-Item applicant-profile.example.json applicant-profile.json
 Copy-Item resumeContext.example.txt resumeContext.txt
 Copy-Item ui-config.example.json ui-config.json
 ```
 
-Edit all four files. Add your resume PDF as `resume.pdf`.
+Fill everything in. Add your `resume.pdf`.
 
 ### Start
 
@@ -212,17 +190,13 @@ Open `http://localhost:3000`.
 
 ---
 
-## First run
+## Your Most Important File: `resumeContext.txt`
 
-First launch opens a real Chrome window. You'll need to:
+This isn't just your resume in text form. It's the **AI's full briefing document**.
 
-1. Log into LinkedIn
-2. Solve any captcha or security check
-3. Let the session get saved to the local `chrome_profile/` folder
+The AI reads it every single time it fills out a form. The better this file is, the better your applications are. Treat it like the pre-game prep session where you tell your coach everything — years with each tool, work authorization status, salary range, portfolio links, pre-written answers to common recurring questions, the works.
 
-After that, subsequent runs will reuse the saved session and won't need a manual login.
-
-If you set `USER_DATA_DIR` in `.env` to your actual Chrome profile path, close all Chrome windows using that profile before starting — Chrome locks profile directories when it's open.
+**Good rule:** if a recruiter might ask it in a form, it goes in `resumeContext.txt`.
 
 ---
 
@@ -244,126 +218,76 @@ If you set `USER_DATA_DIR` in `.env` to your actual Chrome profile path, close a
 
 | Field | What it does |
 |---|---|
-| `activeKeywords` | What the agents search for. Spread evenly across workers. |
+| `activeKeywords` | What the agents search. Split evenly across workers. |
 | `applyMode` | `easy_only`, `external_only`, or `all` |
-| `easyApplyDailyLimit` | Stops after this many Easy Apply submissions per day |
+| `easyApplyDailyLimit` | Hard stop after this many Easy Apply submissions |
 | `aiProvider` | `openai` or `gemini` |
 | `maxConcurrentAgents` | How many parallel Chrome workers to spawn |
-| `headless` | `true` to hide browser windows, `false` to see them |
+| `headless` | `false` to watch them work, `true` to run in background |
 
 ---
 
-## What the agents can do
-
-Each worker reports one of these outcomes per job:
+## Application Statuses
 
 | Status | Meaning |
 |---|---|
-| `APPLIED` | LinkedIn Easy Apply submitted |
-| `APPLIED_EXTERNAL` | External ATS form filled and submitted |
+| `APPLIED` | LinkedIn Easy Apply submitted ✅ |
+| `APPLIED_EXTERNAL` | External ATS filled and submitted ✅ |
 | `RATE LIMITED` | LinkedIn cut it off for the day |
-| `SKIPPED/INELIGIBLE` | Role matched a blocked keyword or blocked company |
+| `SKIPPED/INELIGIBLE` | Matched a blocked role keyword |
 | `SKIPPED_BLOCKED_COMPANY` | Company is on the internal skip list |
-| `SKIPPED_COMPLEX_ATS` | External form was too complex to handle |
-| `FAILED/INCOMPLETE` | Something went wrong mid-application |
-
-There's also a built-in skip list for job titles and company types that are known to be irrelevant or low-quality (data labeling farms, staffing scams, etc.). You can edit this list in `index.js`.
+| `SKIPPED_COMPLEX_ATS` | External form too complex to handle |
+| `FAILED/INCOMPLETE` | Something broke mid-application |
 
 ---
 
-## Demo mode
+## Demo Mode
 
-There's a demo start route that generates fake worker events without touching any real job postings. Good for:
-
-- Testing the dashboard UI
-- Showing someone how it works
-- Recording a demo without submitting anything
-
-Hit `http://localhost:3000` and look for the demo option in the controls.
-
----
-
-## Customizing the AI prompts
-
-The prompt templates live in `ai-provider.js`. Three main schemas:
-
-- `FORM_FILL_SCHEMA` — structures the response for Easy Apply fields
-- `COVER_LETTER_SCHEMA` — controls cover letter format and content
-- `ERROR_FIX_SCHEMA` — targeted repair pass for validation failures
-
-Each schema is a JSON Schema passed to OpenAI's structured output mode. You can add new fields, change how answers are formatted, or tune the instructions in the system prompt above each schema.
-
-The core instruction set for form fill currently includes rules like:
-- Never skip a field
-- For select/radio inputs, return the exact visible option text
-- If the context file doesn't have the answer, generate a plausible professional response
-- Always check work authorization and right-to-work checkboxes
-
-You can adjust these rules to match your own preferences.
-
----
-
-## Files created at runtime
-
-These files are generated while the app runs. They're ignored in `.gitignore` and should stay out of git:
-
-| File | What it contains |
-|---|---|
-| `applied_jobs.md` | Markdown log of every application outcome |
-| `daily-stats.json` | Daily counters for easy apply, external, skips, rate limits |
-| `cover_letter_current.pdf` | The most recently generated cover letter |
-| `form-diagnostics.log` | NDJSON log of form extraction, AI decisions, and validation retries |
-| `chrome_profile/` | Base Chrome session (saved login) |
-| `chrome_profiles/` | Per-agent cloned sessions for multi-agent runs |
-
----
-
-## Safety and privacy
-
-Never commit:
-
-- `.env`
-- `applicant-profile.json`
-- `resumeContext.txt`
-- `resume.pdf`
-- `cover_letter_current.pdf`
-- `chrome_profile/`
-- `chrome_profiles/`
-
-The `.gitignore` already covers these, but check before pushing.
-
----
-
-## Limitations and expectations
-
-- LinkedIn changes its markup periodically. Selectors may break.
-- Anti-bot detection may interrupt runs. Sometimes you'll need to solve a captcha.
-- External ATS sites are extremely varied. Some will work well, some won't.
-- This is an automation assistant, not a universal job-application robot. Expect occasional manual intervention.
-- Users are responsible for reviewing platform terms of service before automating applications.
-
----
-
-## Commands
-
-```bash
-npm start       # Start the dashboard server
-npm run bot     # Run the LinkedIn bot directly without the dashboard
-```
+There's a demo route that generates fake worker events without touching any real jobs — for testing the dashboard, showing someone how it works, or recording without submitting anything.
 
 ---
 
 ## Stack
 
 - **Node.js** — runtime
-- **Playwright** + **playwright-extra** + **stealth plugin** — browser automation with anti-detection
-- **Express** — server + SSE streaming
+- **Playwright** + **playwright-extra stealth** — browser automation with anti-detection
+- **Express** + **SSE** — server and real-time dashboard streaming
 - **OpenAI SDK** — GPT-4.1 with strict JSON schema mode
 - **Google GenAI SDK** — Gemini Flash (optional fallback)
-- **Vanilla HTML/CSS/JS** — dashboard UI, no framework
+- **Vanilla HTML/CSS/JS** — dashboard UI, no framework, Press Start 2P font
 
 ---
 
-> This project runs entirely on your machine. Your resume, your API keys, your browser session. Nothing goes anywhere you didn't tell it to go.
->
-> Also there's an arcade game in it. Enter your initials. You deserve it.
+## Privacy & Safety
+
+Never commit:
+- `.env` (API keys)
+- `applicant-profile.json` (your contact info)
+- `resumeContext.txt` (your background)
+- `resume.pdf`
+- `chrome_profile/` or `chrome_profiles/` (browser sessions with saved logins)
+
+The `.gitignore` already covers these.
+
+---
+
+## Limitations
+
+- LinkedIn changes its markup. Selectors may break occasionally.
+- Anti-bot detection may interrupt runs. Sometimes you'll need to solve a captcha.
+- External ATS sites vary wildly — some work great, some won't.
+- Users are responsible for reviewing platform terms before automating applications.
+
+---
+
+<div align="center">
+
+*This project runs entirely on your machine.*
+*Your resume, your keys, your browser session. Nothing goes anywhere you didn't send it.*
+
+*Also there's an arcade game in it.*
+*Enter your initials. You deserve it.*
+
+<img src="public/logo2.png" width="60" alt="ApplyGuy" />
+
+</div>
